@@ -1,0 +1,11 @@
+@Week1_Project_WithCopilot_HostAddress = http://localhost:5118
+
+GET {{Week1_Project_WithCopilot_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
+
+GET {{Week1_Project_WithCopilot_HostAddress}}/api/customers/search?q=alice&limit=10
+Accept: application/json
+
+###
