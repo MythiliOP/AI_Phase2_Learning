@@ -1,13 +1,8 @@
-namespace Week1_Project_WithCopilot;
+using Week1_Project_WithCopilot.Models;
 
-public sealed record Customer(int Id, string Name, string Email);
+namespace Week1_Project_WithCopilot.Repositories;
 
-public interface ICustomerSearchService
-{
-    IReadOnlyList<Customer> Search(string query, int limit);
-}
-
-public sealed class InMemoryCustomerSearchService : ICustomerSearchService
+public sealed class InMemoryCustomerRepository : ICustomerRepository
 {
     private static readonly Customer[] Customers =
     [
@@ -16,15 +11,21 @@ public sealed class InMemoryCustomerSearchService : ICustomerSearchService
         new(3, "Carol Williams", "carol.williams@example.com")
     ];
 
-    public IReadOnlyList<Customer> Search(string query, int limit)
+    public Task<IReadOnlyList<Customer>> SearchAsync(
+        string query,
+        int limit,
+        CancellationToken cancellationToken)
     {
+        cancellationToken.ThrowIfCancellationRequested();
         var normalizedQuery = query.Trim();
 
-        return Customers
+        IReadOnlyList<Customer> results = Customers
             .Where(customer =>
                 customer.Name.Contains(normalizedQuery, StringComparison.OrdinalIgnoreCase) ||
                 customer.Email.Contains(normalizedQuery, StringComparison.OrdinalIgnoreCase))
             .Take(limit)
             .ToArray();
+
+        return Task.FromResult(results);
     }
 }
