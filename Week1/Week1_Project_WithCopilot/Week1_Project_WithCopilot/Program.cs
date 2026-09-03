@@ -14,6 +14,8 @@ builder.Services.AddSingleton<ICustomerRepository, InMemoryCustomerRepository>()
 builder.Services.AddScoped<ICustomerSearchService, CustomerSearchService>();
 builder.Services.AddSingleton<IProductRepository, InMemoryProductRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 

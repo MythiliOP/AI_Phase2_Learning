@@ -101,3 +101,20 @@ Required workflow:
 8. Use async methods and `CancellationToken` for I/O operations.
 9. Add Swagger/OpenAPI metadata for every endpoint.
 10. Build and test the project after creating the endpoint.
+
+## Test Case Generation
+
+Ask Copilot to generate:
+
+- Happy path scenarios
+- Negative scenarios
+- Edge cases
+- Boundary conditions
+
+## Defect Analysis
+
+Ask Copilot to:
+
+- Suggest root causes
+- Recommend regression tests
+- Identify risk areas
